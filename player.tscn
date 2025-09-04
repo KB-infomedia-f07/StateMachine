@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://oprjft5vi6me"]
+
+[ext_resource type="Texture2D" uid="uid://bt2hcyyug0pe6" path="res://icon.svg" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://cmpwh1s5c8gs2" path="res://Player.cs" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://dc4dh2oeb8fw7" path="res://StateMachine/StateMachine.cs" id="3_2hs0m"]
+[ext_resource type="Script" uid="uid://b4eclx4sdq7b5" path="res://StateMachine/States/Idle.cs" id="4_1jxqw"]
+[ext_resource type="Script" uid="uid://bqwdksv41reu7" path="res://StateMachine/States/Walk.cs" id="5_dw050"]
+[ext_resource type="Script" uid="uid://byoajnjhf6eli" path="res://StateMachine/States/Jump.cs" id="6_b26j0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(128, 129)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4flbx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Statemachine" type="Node" parent="." node_paths=PackedStringArray("initialeState")]
+script = ExtResource("3_2hs0m")
+initialeState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="Statemachine" node_paths=PackedStringArray("player")]
+script = ExtResource("4_1jxqw")
+player = NodePath("../..")
+
+[node name="Walk" type="Node" parent="Statemachine" node_paths=PackedStringArray("player")]
+script = ExtResource("5_dw050")
+player = NodePath("../..")
+
+[node name="Jump" type="Node" parent="Statemachine" node_paths=PackedStringArray("player")]
+script = ExtResource("6_b26j0")
+player = NodePath("../..")
