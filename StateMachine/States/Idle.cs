@@ -5,9 +5,10 @@ public partial class Idle : State
 {
 	[Export]
 	Player player;
-    public override void Enter()
+	public override void Enter()
 	{
 		GD.Print("Entering Idle");
+		player.PlayAnimation("idle");
 	}
 
     public override void Exit()

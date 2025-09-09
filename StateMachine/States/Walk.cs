@@ -5,9 +5,10 @@ public partial class Walk : State
 {
 	[Export]
     Player player;
-    public override void Enter()
-    {
+	public override void Enter()
+	{
 		GD.Print("Entering walk");
+		player.PlayAnimation("walk");
     }
 
     public override void Exit()
@@ -22,6 +23,16 @@ public partial class Walk : State
 		if (direction.X != 0)
 		{
 			velocity.X = Mathf.Round(direction.X) * player.Speed;
+			if (direction.X < 0)
+			{
+				player.isFacingLeft = true;
+			}
+			else
+			{
+				player.isFacingLeft = false;
+			}
+
+			//player.isFacingLeft = direction.X < 0;
 		}
 		else
 		{
