@@ -26,16 +26,16 @@ public partial class Idle : State
 		{
 			EmitSignal(State.SignalName.Transitioned, this, "walk");
 		}
-	/*
+	
 		if (Input.IsActionJustPressed("jump"))
 		{
 			EmitSignal(State.SignalName.Transitioned, this, "jump");
 		}
-		*/
+		
     }
 
     public override void Update(double delta)
     {
-		
+
     }
 }

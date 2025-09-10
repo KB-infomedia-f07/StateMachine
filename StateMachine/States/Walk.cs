@@ -44,6 +44,9 @@ public partial class Walk : State
 
     public override void Update(double delta)
     {
-
+		if (Input.IsActionJustPressed("jump"))
+		{
+			EmitSignal(State.SignalName.Transitioned, this, "jump");
+		}
     }
 }
